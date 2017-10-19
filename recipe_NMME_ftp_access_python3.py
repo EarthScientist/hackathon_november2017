@@ -7,7 +7,6 @@
 # Funder: SNAP
 # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 
-
 if __name__ == '__main__':
 	import ftplib, os
 
@@ -24,7 +23,7 @@ if __name__ == '__main__':
 	# list the projects
 	project_list = f.nlst()
 	
-	# from the project you want...  list the subdirs
+	# from the project you want...  list the subdirs (models)
 	project = 'realtime_anom'
 
 	f.cwd( project )
