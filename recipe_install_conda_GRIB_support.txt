@@ -1,0 +1,36 @@
+# # # # # # # # # # # # # # # # # # # # # # # # # # #
+# installing pyNIO and setting up Anaconda to do it.
+# 
+# RECIPE FOR IARC NOVEMBER 2017 HACKATHON
+# 
+# Author: Michael Lindgren (malindgren@alaska.edu)
+# Funder: SNAP
+# # # # # # # # # # # # # # # # # # # # # # # # # # # 
+
+# INSTALL ANACONDA
+wget https://repo.continuum.io/archive/Anaconda3-5.0.0.1-Linux-x86_64.sh
+bash Anaconda3-5.0.0.1-Linux-x86_64.sh
+
+# CREATE A VIRTUALENV in PYTHON2 -- NO PY3 SUPPORT YET...
+conda create -n condaenv2 python=2.7 anaconda
+
+# USE THE NEW VENV
+source activate condaenv2
+
+# INSTALL PYNIO
+conda install -c conda-forge pynio
+
+# INSTALL SOME PACKAGES
+conda install xarray
+
+# DOWNLOAD AN NMME OUTPUT FILE FOR TESTING:
+wget ftp://ftp.cpc.ncep.noaa.gov/NMME/realtime_anom/GFDL/2017100800/tmp2m.2017100100.01.GFDL.anom.avrg.1x1.grb
+
+# NOW DROP INTO A PYTHON SHELL -- SCREEN-IT
+screen ipython
+
+>>> import xarray as xr
+>>> fn = 'tmp2m.2017100100.01.GFDL.anom.avrg.1x1.grb' # the file just downloaded
+>>> ds = xr.open_dataset( fn, engine='pynio' )
+
+# FROM HERE WE CAN DO WHATEVER WE WANT WITH THE DATA WITH NUMPY, XARRAY, NETCDF4  :)
